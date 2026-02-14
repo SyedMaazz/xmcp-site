@@ -1,7 +1,11 @@
+import Navbar from "./components/Navbar";
+
 export default function App() {
   return (
-    <h1 className="text-4xl font-bold text-indigo-500">
-      Tailwind is working
-    </h1>
+    <div className="min-h-screen bg-[#0b0b0f] text-white">
+      <Navbar />
+
+      <div className="h-[200vh]" />
+    </div>
   );
 }
