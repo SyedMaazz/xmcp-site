@@ -1,51 +1,50 @@
+import logo from "../assets/xmcp-logo.svg";
+import githubIcon from "../assets/github.png";
 import { Search, Github } from "lucide-react";
 
 export default function Navbar() {
   return (
     <nav className="border-b border-neutral-800 bg-black text-sm">
-      <div className="relative max-w-7xl mx-auto h-14 flex items-center justify-between px-6">
+      <div className="relative max-w-7xl mx-auto h-13.5 flex items-center justify-between px-6">
 
         {/* LEFT LINKS */}
-        <div className="flex items-center gap-6 text-neutral-300">
-          <a href="#" className="hover:text-white">Home</a>
-          <a href="#" className="hover:text-white">Docs</a>
-          <a href="#" className="hover:text-white">Examples</a>
-          <a href="#" className="hover:text-white">Blog</a>
-          <a href="#" className="hover:text-white">Showcase</a>
+        <div className="flex items-center gap-4 text-white -ml-32">
+          {["Home", "Docs", "Examples", "Blog", "Showcase"].map((item) => (
+            <a key={item} href="#" className="relative group">
+              {item}
+              <span className="absolute left-0 -bottom-0.5 h-[1px] w-0 bg-white transition-all duration-300 group-hover:w-full" />
+            </a>
+          ))}
         </div>
 
         {/* CENTER LOGO */}
-        <div className="absolute left-1/2 -translate-x-1/2 font-semibold text-lg tracking-wide">
-          Xmcp
+        <div className="absolute left-1/2 -translate-x-1/2 cursor-pointer hover:opacity-80 transition">
+          <img src={logo} alt="XMCP" className="h-6 w-auto opacity-100" />
         </div>
 
         {/* RIGHT SECTION */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 ml-auto">
 
           {/* SEARCH BOX */}
-          <div className="flex items-center gap-2 bg-neutral-900 border border-neutral-800 rounded-md px-3 py-1.5 text-neutral-400">
+          <div className="flex items-center gap-2 border border-[#444444] px-2 py-[8px] text-[#7c7c7c] hover:bg-[#1a1a1a] transition cursor-pointer">
             <Search size={16} />
             <span className="hidden sm:inline">Search docs...</span>
-            <kbd className="ml-2 text-xs border border-neutral-700 rounded px-1.5 py-0.5">
+            <span className="ml-3 text-[14px] text-white ">
               Ctrl K
-            </kbd>
+            </span>
           </div>
 
           {/* ASK AI BUTTON */}
-          <button className="border border-neutral-800 bg-neutral-900 hover:bg-neutral-800 px-3 py-1.5 rounded-md text-neutral-300">
-            Ask AI
-            <span className="ml-2 text-xs border border-neutral-700 rounded px-1.5 py-0.5">
+          <div className="flex items-center gap-5 border border-[#444444] px-2 py-[8px] text-[#7c7c7c] hover:bg-[#1a1a1a] transition cursor-pointer">
+            <span className="hidden sm:inline">Ask AI</span>
+            <span className="ml-4 text-[14px] text-white">
               Ctrl I
             </span>
-          </button>
+          </div>
 
           {/* GITHUB ICON */}
-          <a
-            href="#"
-            className="text-neutral-400 hover:text-white"
-            aria-label="GitHub"
-          >
-            <Github size={18} />
+         <a href="#" className="hover:opacity-80 transition invert-100 -mr-31.5 ml-0.5">
+            <img src={githubIcon} alt="GitHub" className="h-5 w-5" />
           </a>
         </div>
       </div>
