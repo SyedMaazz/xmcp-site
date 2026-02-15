@@ -29,7 +29,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2 border border-[#444444] px-2 py-[8px] text-[#7c7c7c] hover:bg-[#1a1a1a] transition cursor-pointer">
             <Search size={16} />
             <span className="hidden sm:inline">Search docs...</span>
-            <span className="ml-3 text-[14px] text-white ">
+            <span className="ml-3.5 text-[14px] text-white ">
               Ctrl K
             </span>
           </div>
