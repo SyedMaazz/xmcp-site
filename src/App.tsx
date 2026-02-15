@@ -1,12 +1,11 @@
 import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#0b0b0f] text-white">
+    <div className="min-h-screen bg-[#000000] text-white">
       <Navbar />
-
-      {/* Temporary space so you can see layout */}
-      <div className="h-[200vh]" />
+      <Hero />
     </div>
   );
 }
