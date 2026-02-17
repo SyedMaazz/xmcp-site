@@ -6,6 +6,8 @@ export default function App() {
     <div className="min-h-screen bg-[#000000] text-white">
       <Navbar />
       <Hero />
+
+      <div className="h-[150vh]" />
     </div>
   );
 }

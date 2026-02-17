@@ -4,7 +4,7 @@ import { Search, Github } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <nav className="border-b border-neutral-800 bg-black text-sm">
+    <nav className="border-b border-neutral-900 bg-black text-sm">
       <div className="relative max-w-7xl mx-auto h-13.5 flex items-center justify-between px-6">
 
         {/* LEFT LINKS */}
