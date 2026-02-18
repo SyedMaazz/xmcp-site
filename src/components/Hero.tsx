@@ -3,7 +3,7 @@ import HeroCanvas from "./HeroCanvas";
 
 export default function Hero() {
   return (
-    <section className="pt-15.5 pb-48">
+    <section className="pt-15.5">
       <Container>
         <div className="text-center flex flex-col items-center">
           {/* VERSION ROW */}
