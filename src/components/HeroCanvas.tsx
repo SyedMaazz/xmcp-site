@@ -28,7 +28,7 @@ void main() {
   float rawDisp = texture2D(uDisplacementTexture, uv).r;
 
   float disp = smoothstep(uSmoothstepMin, uSmoothstepMax, rawDisp);
-  disp = mix(disp, rawDisp, 0.4);
+  disp = mix(disp, rawDisp, 0.2);
   disp = pow(disp, 0.8);
 
   vec3 pos = position;
@@ -57,7 +57,7 @@ void main() {
     uResolution.y *
     (1.0 / -mv.z);
 
-  vColor = vec3(pow(picture, 1.2));
+ vColor = vec3(pow(picture, 0.85)) * 0.38;
 }
 `;
 
@@ -81,7 +81,7 @@ void main() {
 /* ===================== PARTICLES ===================== */
 
 function ParticleImage() {
-  const { size, camera, viewport } = useThree();
+  const { size, camera, viewport, pointer } = useThree();
 
   const raycaster = useMemo(() => new THREE.Raycaster(), []);
   const planeRef = useRef<THREE.Mesh>(null!);
@@ -119,7 +119,7 @@ function ParticleImage() {
       new THREE.TextureLoader().load("/xmcp-hero.png", (tex) => {
         setImageAspect(tex.image.width / tex.image.height);
       }),
-    []
+    [],
   );
 
   /* ✅ PLANE SIZE BASED ON VIEWPORT */
@@ -128,7 +128,12 @@ function ParticleImage() {
 
   /* ✅ GEOMETRY */
   const geometry = useMemo(() => {
-    const g = new THREE.PlaneGeometry(planeWidth, planeHeight, 400, 400);
+    if (imageAspect === 1) return null;
+
+    const width = viewport.width * 0.8;
+    const height = width / imageAspect;
+
+    const g = new THREE.PlaneGeometry(width, height, 650, 650);
     g.setIndex(null);
     g.deleteAttribute("normal");
 
@@ -145,7 +150,7 @@ function ParticleImage() {
     g.setAttribute("aAngle", new THREE.BufferAttribute(angle, 1));
 
     return g;
-  }, [planeWidth, planeHeight]);
+  }, [viewport.width, imageAspect]);
 
   const material = useMemo(
     () =>
@@ -159,7 +164,7 @@ function ParticleImage() {
           uPictureTexture: { value: pictureTexture },
           uDisplacementTexture: { value: canvasData.texture },
           uDisplacementStrength: { value: 1.0 },
-          uPointSizeMultiplier: { value: 0.11 },
+          uPointSizeMultiplier: { value: 0.075 },
           uSmoothstepMin: { value: 0.35 },
           uSmoothstepMax: { value: 0.82 },
           uTime: { value: 0 },
@@ -167,23 +172,20 @@ function ParticleImage() {
           uCursorVelocity: { value: new THREE.Vector2() },
         },
       }),
-    [canvasData, pictureTexture]
+    [canvasData, pictureTexture],
   );
 
   useEffect(() => {
-    const onMove = (e: PointerEvent) => {
+    const onMove = () => {
       if (!planeRef.current) return;
 
-      const x = (e.clientX / size.width) * 2 - 1;
-      const y = -(e.clientY / size.height) * 2 + 1;
-
-      raycaster.setFromCamera({ x, y }, camera);
+      raycaster.setFromCamera(pointer, camera);
       const hits = raycaster.intersectObject(planeRef.current);
 
       if (hits[0]?.uv) {
         canvasData.cursor.set(
           hits[0].uv.x * canvasData.canvas.width,
-          (1 - hits[0].uv.y) * canvasData.canvas.height
+          (1 - hits[0].uv.y) * canvasData.canvas.height,
         );
 
         canvasData.lastMove = performance.now();
@@ -192,14 +194,14 @@ function ParticleImage() {
 
     window.addEventListener("pointermove", onMove);
     return () => window.removeEventListener("pointermove", onMove);
-  }, [camera, size, raycaster, canvasData]);
+  }, [camera, raycaster, canvasData, pointer]);
 
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
 
     material.uniforms.uResolution.value.set(
       size.width * window.devicePixelRatio,
-      size.height * window.devicePixelRatio
+      size.height * window.devicePixelRatio,
     );
 
     canvasData.velocity
@@ -216,7 +218,7 @@ function ParticleImage() {
       0,
       0,
       canvasData.canvas.width,
-      canvasData.canvas.height
+      canvasData.canvas.height,
     );
 
     const isMoving = performance.now() - canvasData.lastMove < 50;
@@ -230,7 +232,7 @@ function ParticleImage() {
         canvasData.cursor.x - s / 2,
         canvasData.cursor.y - s / 2,
         s,
-        s
+        s,
       );
     }
 
@@ -240,12 +242,16 @@ function ParticleImage() {
   return (
     <>
       {/* ✅ RAYCAST PLANE MATCHES PARTICLE PLANE */}
-      <mesh ref={planeRef} visible={false}>
-        <planeGeometry args={[planeWidth, planeHeight]} />
-        <meshBasicMaterial side={THREE.DoubleSide} />
-      </mesh>
+      {imageAspect !== 1 && (
+        <mesh ref={planeRef} visible={false}>
+          <planeGeometry
+            args={[viewport.width * 0.8, (viewport.width * 0.8) / imageAspect]}
+          />
+          <meshBasicMaterial side={THREE.DoubleSide} />
+        </mesh>
+      )}
 
-      <points geometry={geometry} material={material} />
+      {geometry && <points geometry={geometry} material={material} />}
     </>
   );
 }
@@ -255,7 +261,13 @@ function ParticleImage() {
 export default function ParticleImageCanvas() {
   return (
     <div className="w-[900px] h-[420px] -mt-3">
-      <Canvas events={undefined} camera={{ position: [0, 0, 18], fov: 35 }}>
+      <Canvas
+        events={undefined}
+        gl={{ antialias: true }}
+        dpr={[1, 2]}
+        camera={{ position: [0, 0, 18], fov: 35 }}
+      >
+        <color attach="background" args={["#000000"]} />
         <ParticleImage />
       </Canvas>
     </div>
