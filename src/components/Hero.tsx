@@ -1,4 +1,6 @@
 import Container from "./Container";
+import HeroCanvas from "./HeroCanvas";
+
 
 export default function Hero() {
   return (
@@ -19,6 +21,7 @@ export default function Hero() {
             <br />
             building & shipping MCP servers
           </h1>
+          <HeroCanvas />
         </div>
       </Container>
     </section>
