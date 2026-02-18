@@ -1,10 +1,25 @@
 import logo from "../assets/xmcp-logo.svg";
 import githubIcon from "../assets/github.png";
-import { Search, Github } from "lucide-react";
+import { Search } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="border-b border-neutral-900 bg-black text-sm">
+    <nav
+      className={`sticky top-0 z-50 backdrop-blur-md bg-black20 text-sm transition-colors
+      ${scrolled ? "border-b border-white/0" : "border-b border-neutral-900"}`}
+    >
       <div className="relative max-w-7xl mx-auto h-13.5 flex items-center justify-between px-6">
 
         {/* LEFT LINKS */}
@@ -43,9 +58,10 @@ export default function Navbar() {
           </div>
 
           {/* GITHUB ICON */}
-         <a href="#" className="hover:opacity-80 transition invert-100 -mr-31.5 ml-0.5">
+          <a href="#" className="hover:opacity-80 transition invert-100 -mr-31.5 ml-0.5">
             <img src={githubIcon} alt="GitHub" className="h-5 w-5" />
           </a>
+
         </div>
       </div>
     </nav>

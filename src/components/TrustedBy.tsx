@@ -33,7 +33,7 @@ export default function TrustedBy() {
             <img
               src={localstack}
               alt="LocalStack"
-              className="h-12 w-auto"
+              className="h-12 w-auto mt-0.5 -ml-1"
             />
 
             <BasehubLogo />
