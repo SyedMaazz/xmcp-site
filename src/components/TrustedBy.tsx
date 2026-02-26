@@ -8,7 +8,7 @@ import BasehubLogo from "./logos/BasehubLogo";
 
 export default function TrustedBy() {
   return (
-    <section className="mt-12 pb-500">
+    <section className="mt-12">
       <Container>
         <div className="flex flex-col items-center">
 
@@ -21,7 +21,7 @@ export default function TrustedBy() {
             <img
               src={vercel}
               alt="Vercel"
-              className="h-25 w-30 -mb-1"
+              className="h-25 w-30"
             />
 
             <img
