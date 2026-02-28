@@ -10,6 +10,7 @@ export default function App() {
       <Hero />
       <TrustedBy />
       <Features />
+      
     </div>
   );
 }

@@ -4,15 +4,15 @@ export default function Features() {
   return (
     <section className="mt-32">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-start mb-100">
 
           {/* LEFT SIDE */}
           <div>
-            <span className="uppercase text-[9.8px] bg-[#171717] border border-dashed border-neutral-700 px-2 py-1 text-[#a8a8a8] inline-block mb-6">
+            <span className="uppercase text-[9.8px] bg-[#171717] border border-dashed border-neutral-700 px-2 py-1 text-[#a8a8a8] inline-block mb-3 ml-16.5">
               Features
             </span>
 
-            <h2 className="text-3xl md:text-4xl font-light text-neutral-200 leading-tight max-w-xl">
+            <h2 className="text-3xl md:text-4xl font-light text-neutral-200 max-w-xl">
               The complete stack
               <br />
               to ship an MCP server
