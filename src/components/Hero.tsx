@@ -6,7 +6,6 @@ export default function Hero() {
     <section className="pt-15.5">
       <Container>
         <div className="text-center flex flex-col items-center">
-          {/* VERSION ROW */}
           <div className="flex items-center gap-2 text-[12px] text-white">
             <span>v0.6.2</span>
 
@@ -14,7 +13,6 @@ export default function Hero() {
               Latest Version
             </span>
           </div>
-          {/* HEADING */}
           <h1 className="mt-4.5 w-[900px] h-[160px] text-[40px] font-[350] tracking-normal text-neutral-200 leading-[46px] text-center">
             The TypeScript framework for
             <br />
@@ -22,7 +20,6 @@ export default function Hero() {
           </h1>
           <HeroCanvas />
         </div>
-        {/* CTA BUTTONS */}
         <div className="mt-14 flex items-center justify-center gap-2">
           <button className="bg-white text-black px-6 py-[8.5px] text-sm font-medium rounded-[2px] hover:bg-neutral-200 transition">
             Get started

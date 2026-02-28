@@ -5,12 +5,10 @@ export default function Features() {
     <section className="mt-[141px] mr-23">
       <Container>
 
-        {/* CENTER WRAPPER — control total width here */}
         <div className="mx-auto w-[880px]">
 
           <div className="grid grid-cols-[405px_590px] items-start mb-[400px]">
 
-            {/* LEFT SIDE */}
             <div>
               <span className="uppercase text-[10px] bg-[#171717] border border-dashed border-neutral-700 px-[8px] py-[4px] text-[#a8a8a8] inline-block mb-[12px]">
                 Features
@@ -23,7 +21,6 @@ export default function Features() {
               </h2>
             </div>
 
-            {/* RIGHT SIDE */}
             <div className="text-neutral-400 text-[16px] leading-[24px] mt-15">
               Everything you need to set up fast, customize with ease, and plug
               <br />

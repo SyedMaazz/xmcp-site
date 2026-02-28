@@ -2,7 +2,6 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-/* ===================== SHADERS ===================== */
 
 const vertexShader = `
 uniform vec2 uResolution;
@@ -78,7 +77,6 @@ void main() {
 }
 `;
 
-/* ===================== PARTICLES ===================== */
 
 function ParticleImage() {
   const { size, camera, viewport, pointer } = useThree();
@@ -122,11 +120,9 @@ function ParticleImage() {
     [],
   );
 
-  /* ✅ PLANE SIZE BASED ON VIEWPORT */
   const planeWidth = viewport.width * 0.8;
   const planeHeight = planeWidth / imageAspect;
 
-  /* ✅ GEOMETRY */
   const geometry = useMemo(() => {
     if (imageAspect === 1) return null;
 
@@ -241,7 +237,6 @@ function ParticleImage() {
 
   return (
     <>
-      {/* ✅ RAYCAST PLANE MATCHES PARTICLE PLANE */}
       {imageAspect !== 1 && (
         <mesh ref={planeRef} visible={false}>
           <planeGeometry
@@ -256,7 +251,6 @@ function ParticleImage() {
   );
 }
 
-/* ===================== EXPORT ===================== */
 
 export default function ParticleImageCanvas() {
   return (

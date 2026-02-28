@@ -22,7 +22,6 @@ export default function Navbar() {
     >
       <div className="relative max-w-7xl mx-auto h-13.5 flex items-center justify-between px-6">
 
-        {/* LEFT LINKS */}
         <div className="flex items-center gap-4 text-white -ml-32">
           {["Home", "Docs", "Examples", "Blog", "Showcase"].map((item) => (
             <a key={item} href="#" className="relative group">
@@ -32,15 +31,12 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CENTER LOGO */}
         <div className="absolute left-1/2 -translate-x-1/2 cursor-pointer hover:opacity-80 transition">
           <img src={logo} alt="XMCP" className="h-6 w-auto opacity-100" />
         </div>
 
-        {/* RIGHT SECTION */}
         <div className="flex items-center gap-2 ml-auto">
 
-          {/* SEARCH BOX */}
           <div className="flex items-center gap-2 border border-[#444444] px-2 py-[8px] text-[#7c7c7c] hover:bg-[#1a1a1a] transition cursor-pointer">
             <Search size={16} />
             <span className="hidden sm:inline">Search docs...</span>
@@ -49,7 +45,6 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* ASK AI BUTTON */}
           <div className="flex items-center gap-5 border border-[#444444] px-2 py-[8px] text-[#7c7c7c] hover:bg-[#1a1a1a] transition cursor-pointer">
             <span className="hidden sm:inline">Ask AI</span>
             <span className="ml-4 text-[14px] text-white">
@@ -57,7 +52,6 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* GITHUB ICON */}
           <a href="#" className="hover:opacity-80 transition invert-100 -mr-31.5 ml-0.5">
             <img src={githubIcon} alt="GitHub" className="h-5 w-5" />
           </a>
