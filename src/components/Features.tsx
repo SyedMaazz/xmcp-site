@@ -2,30 +2,37 @@ import Container from "./Container";
 
 export default function Features() {
   return (
-    <section className="mt-32">
+    <section className="mt-[141px] mr-23">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 items-start mb-100">
 
-          {/* LEFT SIDE */}
-          <div>
-            <span className="uppercase text-[9.8px] bg-[#171717] border border-dashed border-neutral-700 px-2 py-1 text-[#a8a8a8] inline-block mb-3 ml-16.5">
-              Features
-            </span>
+        {/* CENTER WRAPPER — control total width here */}
+        <div className="mx-auto w-[880px]">
 
-            <h2 className="text-3xl md:text-4xl font-light text-neutral-200 max-w-xl">
-              The complete stack
+          <div className="grid grid-cols-[405px_590px] items-start mb-[400px]">
+
+            {/* LEFT SIDE */}
+            <div>
+              <span className="uppercase text-[10px] bg-[#171717] border border-dashed border-neutral-700 px-[8px] py-[4px] text-[#a8a8a8] inline-block mb-[12px]">
+                Features
+              </span>
+
+              <h2 className="text-[31px] leading-[35px] font-[450] text-neutral-200">
+                The complete stack
+                <br />
+                to ship an MCP server
+              </h2>
+            </div>
+
+            {/* RIGHT SIDE */}
+            <div className="text-neutral-400 text-[16px] leading-[24px] mt-15">
+              Everything you need to set up fast, customize with ease, and plug
               <br />
-              to ship an MCP server
-            </h2>
-          </div>
+              directly into your apps.
+            </div>
 
-          {/* RIGHT SIDE */}
-          <div className="text-neutral-400 text-lg leading-relaxed max-w-xl">
-            Everything you need to set up fast, customize with ease, and plug
-            directly into your apps.
           </div>
-
         </div>
+
       </Container>
     </section>
   );
